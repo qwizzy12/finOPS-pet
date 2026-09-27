@@ -17,6 +17,11 @@ spec:
           customPricing:
             enabled: true
             provider: "custom"
+            costModel:
+              description: "Yandex Cloud RUB"
+              CPU: "1.25"
+              RAM: "0.20"
+              storage: "0.05"
           prometheus:
             internal:
               enabled: false
