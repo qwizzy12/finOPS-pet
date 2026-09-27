@@ -10,7 +10,7 @@ spec:
     chart: opencost
     targetRevision: 1.15.0
     helm:
-      values: |
+      values:
         opencost:
           exporter:
             defaultClusterId: "yandex-cloud-cluster"
@@ -20,7 +20,6 @@ spec:
             external:
               enabled: true
               url: "http://kube-prometheus-stack-prometheus.monitoring.svc.cluster.local:9090"
-              ports: "9090"
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: opencost
