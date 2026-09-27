@@ -9,8 +9,18 @@ spec:
     repoURL: 'https://opencost.github.io/opencost-helm-chart'
     chart: opencost
     targetRevision: 1.15.0
-    path: kubernetes/
-
+    helm:
+      values: |
+        opencost:
+          exporter:
+            defaultClusterId: "yandex-cloud-cluster"
+          prometheus:
+            internal:
+              enabled: false
+            external:
+              enabled: true
+              url: "http://kube-prometheus-stack-prometheus.monitoring.svc.cluster.local:9090"
+              ports: "9090"
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: opencost
@@ -18,4 +28,6 @@ spec:
     automated:
       prune: true
       selfHeal: true
-    createNamespace: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
