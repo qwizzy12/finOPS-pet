@@ -12,6 +12,9 @@ spec:
     helm:
       values: |
         opencost:
+          extraEnv:
+            - name: CLOUD_PROVIDER
+              value: "custom"
           exporter:
             cloudProviderApiKey: "disabled"
             defaultClusterId: "yandex-cloud-cluster"
