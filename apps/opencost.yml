@@ -14,6 +14,9 @@ spec:
         opencost:
           exporter:
             defaultClusterId: "yandex-cloud-cluster"
+          customPricing:
+            enabled: true
+            provider: "custom"
           prometheus:
             internal:
               enabled: false
