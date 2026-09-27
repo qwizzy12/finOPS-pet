@@ -13,6 +13,7 @@ spec:
       values: |
         opencost:
           exporter:
+            cloudProviderApiKey: "disabled"
             defaultClusterId: "yandex-cloud-cluster"
           customPricing:
             enabled: true
