@@ -9,17 +9,8 @@ spec:
     repoURL: 'https://opencost.github.io/opencost-helm-chart'
     chart: opencost
     targetRevision: 1.15.0
-    helm:
-      values: |
-        opencost:
-          exporter:
-            defaultClusterId: "yandex-cloud-cluster"
-          prometheus:
-            internal:
-              enabled: false
-            external:
-              enabled: true
-              url: "http://cluster.local"
+    path: kubernetes/
+
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: opencost
