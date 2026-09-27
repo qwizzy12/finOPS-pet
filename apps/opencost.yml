@@ -36,6 +36,7 @@ spec:
             internal:
               enabled: false
             external:
+              enabled:
               url: "http://prometheus-operated.monitoring.svc.cluster.local:9090"
   destination:
     server: 'https://kubernetes.default.svc'
