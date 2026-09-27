@@ -15,8 +15,6 @@ spec:
           extraEnv:
             - name: CLOUD_PROVIDER
               value: "custom"
-            - name: CURRENCY_CODE
-              value: "RUB"
           exporter:
             cloudProviderApiKey: "disabled"
             defaultClusterId: "yandex-cloud-cluster"
