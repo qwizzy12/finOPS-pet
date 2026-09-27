@@ -7,7 +7,7 @@ data:
   default.json: |
     {
       "description": "Yandex Cloud",
-      "CPU": "1.25",
-      "RAM": "0.20",
+      "CPU": "5.5",
+      "RAM": "1.00",
       "storage": "0.05"
     }
