@@ -1,0 +1,18 @@
+- name: Проверка, создан ли уже namespace Argocd
+  shell: "kubectl get ns argocd"
+  register: argocd_ns_check
+  failed_when: false
+  changed_when: false
+
+- name: Создание namespace для ArgoCD
+  shell: "kubectl create namespace argocd"
+  when: argocd_ns_check.rc != 0
+
+- name: Развертывание манифеста argoCD
+  shell: "kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml --server-side=true --force-conflicts"
+
+- name: Ожидание запуска основных подов ArgoCD
+  shell: "kubectl get pods -n argocd -l app.kubernetes.io/name=argocd-server -o jsonpath='{.items[*].status.phase}'"
+
+- name: Перевод веб-интерфейса ArgoCD в режим NodePort
+  shell: "kubectl patch svc argocd-server -n argocd -p '{\"spec\": {\"type\": \"NodePort\", \"ports\": [{\"port\": 80, \"nodePort\": 30080}]}}'"

@@ -1,0 +1,8 @@
+- name: Развертывание GitOps
+  hosts: all_server
+  become: true
+
+  roles:
+    - common
+    - k3s
+    - argocd

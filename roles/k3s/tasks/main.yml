@@ -1,0 +1,15 @@
+- name: Скачивание и установка k3s
+  shell: "curl -sfL https://get.k3s.io | sh -"
+  args:
+    creates: /usr/local/bin/k3s
+- name: Ожидание инциализации k3s
+  wait_for:
+    timeout: 20
+
+- name: Проверка нод кластера
+  shell: "kubectl get nodes"
+  register: kubectl_output
+
+- name: Вывод статуса k3s
+  debug:
+    var: kubectl_output.stdout_lines

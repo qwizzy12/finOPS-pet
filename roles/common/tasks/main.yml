@@ -1,0 +1,17 @@
+- name: Обновление кэша пакетов apt
+  ansible.builtin.apt:
+    update_cache: true
+    cache_valid_time: 3600
+
+- name: Установка базовых системных утилит
+  apt:
+    name:
+      - curl
+      - unzip
+      - git
+      - htop
+      - apt-transport-https
+      - ca-certificates
+      - gnupg
+      - lsb-release
+    state: present
