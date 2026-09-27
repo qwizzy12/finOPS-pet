@@ -19,7 +19,7 @@ spec:
               enabled: true
               url: "http://cluster.local"
   destination:
-    server: 'https://default.svc'
+    server: 'https://kubernetes.default.svc'
     namespace: opencost
   syncPolicy:
     automated:
