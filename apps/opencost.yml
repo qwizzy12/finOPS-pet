@@ -20,16 +20,12 @@ spec:
             defaultClusterId: "yandex-cloud-cluster"
           customPricing:
             enabled: true
-            createConfigmap: true
             provider: "custom"
             costModel:
-              description: "Yandex cloud prices"
+              description: "Yandex Cloud Ruble Prices"
               CPU: "1.25"
-              RAM: "5.5"
-              storage: "0.10"
-              zoneNetworkEgrees: "0.00"
-              regionNetworkEgrees: "0.00"
-              internetNetworkEgrees: "0.00"
+              RAM: "0.20"
+              storage: "0.05"
           prometheus:
             internal:
               enabled: false
