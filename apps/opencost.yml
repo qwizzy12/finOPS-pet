@@ -14,13 +14,14 @@ spec:
         opencost:
           exporter:
             defaultClusterId: "yandex-cloud-cluster"
+          cloudProviderApiKey: "placeholder"
           customPricing:
             enabled: true
             provider: "custom"
             costModel:
               description: "Yandex Cloud RUB"
-              CPU: "1.25"
-              RAM: "0.20"
+              cpu: "1.25"
+              ram: "0.20"
               storage: "0.05"
           prometheus:
             internal:
