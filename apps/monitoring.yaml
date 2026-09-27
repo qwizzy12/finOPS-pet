@@ -1,18 +1,25 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: root-apps
+  name: prometheus-monitoring
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: "https://github.com/qwizzy12/finOPS-pet"
-    targetRevision: HEAD
-    path: apps
+    chart: kube-prometheus-stack
+    targetRevision: 61.3.0
+    helm:
+      values: |
+        grafana:
+          service:
+            type: NodePort
+            nodePort: 30090
   destination:
-    server: 'https://default.svc'
-    namespace: argocd
+    server: "https://kubernetes.default.svc"
+    namespace: monitoring
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
+    createNamespace: true
