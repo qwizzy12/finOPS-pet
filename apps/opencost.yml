@@ -15,17 +15,12 @@ spec:
           extraEnv:
             - name: CLOUD_PROVIDER
               value: "custom"
+            - name: CURRENCY_CODE
+              value: "RUB"
           exporter:
             cloudProviderApiKey: "disabled"
             defaultClusterId: "yandex-cloud-cluster"
-          customPricing:
-            enabled: true
-            provider: "custom"
-            costModel:
-              description: "Yandex Cloud Ruble Prices"
-              CPU: "1.25"
-              RAM: "0.20"
-              storage: "0.05"
+          customPricingConfigMap: "opencost-default-pricing"
           prometheus:
             internal:
               enabled: false
