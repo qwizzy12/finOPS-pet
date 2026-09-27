@@ -18,7 +18,18 @@ spec:
           exporter:
             cloudProviderApiKey: "disabled"
             defaultClusterId: "yandex-cloud-cluster"
-          customPricingConfigMap: "opencost-default-pricing"
+          customPricing:
+            enabled: true
+            createConfigmap: true
+            provider: "custom"
+            costModel:
+              description: "Yandex cloud prices"
+              CPU: "1.25"
+              RAM: "5.5"
+              storage: "0.10"
+              zoneNetworkEgrees: "0.00"
+              regionNetworkEgrees: "0.00"
+              internetNetworkEgrees: "0.00"
           prometheus:
             internal:
               enabled: false
