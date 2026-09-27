@@ -9,5 +9,9 @@ data:
       "description": "Yandex Cloud",
       "CPU": "5.5",
       "RAM": "1.00",
-      "storage": "0.05"
+      "storage": "0.05",
+      "loadBalancer": "0.00",
+      "networkZoneTransfer": "0.00",
+      "networkInternetTransfer": "0.00"
     }
+
