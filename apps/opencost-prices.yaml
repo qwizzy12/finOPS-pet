@@ -6,12 +6,12 @@ metadata:
 data:
   default.json: |
     {
-      "description": "Yandex Cloud",
-      "CPU": "5.5",
-      "RAM": "1.00",
-      "storage": "0.05",
+      "provider": "custom",
+      "description": "Yandex Cloud Custom Prices",
+      "CPU": "1.25",
+      "RAM": "5.5",
+      "storage": "0.10",
       "loadBalancer": "0.00",
       "networkZoneTransfer": "0.00",
       "networkInternetTransfer": "0.00"
     }
-
