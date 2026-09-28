@@ -10,7 +10,7 @@ spec:
     chart: opencost
     targetRevision: 1.15.0
     helm:
-      values:
+      values: |
         opencost:
           extraEnv:
             - name: CLOUD_PROVIDER
