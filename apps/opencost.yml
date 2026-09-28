@@ -10,7 +10,7 @@ spec:
     chart: opencost
     targetRevision: 1.15.0
     helm:
-      values: |
+      values:
         opencost:
           extraEnv:
             - name: CLOUD_PROVIDER
@@ -18,10 +18,20 @@ spec:
           exporter:
             cloudProviderApiKey: "disabled"
             defaultClusterId: "yandex-cloud-cluster"
-            customPricingConfigMap: "opencost-default-pricing"
           customPricing:
             enabled: true
             provider: "custom"
+            costModel:
+              description: "Custom k3s pricing model"
+              CPU: 0.022
+              RAM: 0.005
+              storage: 0.00015
+              zoneNetworkEgress: 0.01
+              regionNetworkEgress: 0.01
+              internetNetworkEgress: 0.12
+              firstFiveForwardingRulesCost: 0
+              additionalForwardingRuleCost: 0
+              LBIngressDataCost: 0
           prometheus:
             internal:
               enabled: false
