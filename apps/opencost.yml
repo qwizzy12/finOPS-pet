@@ -15,11 +15,13 @@ spec:
           extraEnv:
             - name: CLOUD_PROVIDER
               value: "custom"
-          opencostProperties:
-            customPricingConfigMap: "opencost-default-pricing:
           exporter:
             cloudProviderApiKey: "disabled"
             defaultClusterId: "yandex-cloud-cluster"
+            customPricingConfigMap: "opencost-default-pricing"
+          customPricing:
+            enabled: true
+            provider: "custom"
           prometheus:
             internal:
               enabled: false
