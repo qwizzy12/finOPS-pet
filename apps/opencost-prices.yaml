@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: opencost-default-pricing
+  namespace: opencost
+data:
+  default.json: |
+    {
+      "description": "Yandex Cloud",
+      "CPU": "5.5",
+      "RAM": "1.00",
+      "storage": "0.05",
+      "loadBalancer": "0.00",
+      "networkZoneTransfer": "0.00",
+      "networkInternetTransfer": "0.00"
+    }
