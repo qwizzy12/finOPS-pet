@@ -6,11 +6,14 @@ metadata:
 data:
   default.json: |
     {
-      "description": "Yandex Cloud",
-      "CPU": "5.5",
-      "RAM": "1.00",
-      "storage": "0.05",
-      "loadBalancer": "0.00",
-      "networkZoneTransfer": "0.00",
-      "networkInternetTransfer": "0.00"
+      "CPU": "0.022",
+      "RAM": "0.005",
+      "GPU": "0.95",
+      "storage": "0.00015",
+      "zoneNetworkEgress": "0.01",
+      "regionNetworkEgress": "0.01",
+      "internetNetworkEgress": "0.12",
+      "forwardingrule": "0.0",
+      "lbIngressDataCost": "0.0"
     }
+
