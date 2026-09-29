@@ -1,0 +1,34 @@
+name: Ansible Lint
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checks-out your repository
+        uses: actions/checkout@v4
+
+      - name: Setup python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+          
+      - name: Install Ansible Docker collection
+        run: ansible-galaxy collection install community.docker
+        
+      - name: Install ansible-lint
+        run: |
+          python3 -m pip install --upgrade pip
+          pip install ansible-lint
+
+      - name: Run Ansible-lint
+        run: ansible-lint playbook.yml
+        env:
+          ANSIBLE_COLLECTIONS_PATH: ~/.ansible/collections
