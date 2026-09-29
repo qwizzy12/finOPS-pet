@@ -10,7 +10,8 @@
 
 - name: Проверка нод кластера
   ansible.builtin.command: "kubectl get nodes"
-  register: kubectl_output
+  register: k3s_kubectl_output
+  changed_when: false
 
 - name: Вывод статуса k3s
   ansible.builtin.debug:
