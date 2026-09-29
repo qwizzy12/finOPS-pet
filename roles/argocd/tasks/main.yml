@@ -22,6 +22,6 @@
   changed_when: false
 
 - name: Перевод веб-интерфейса ArgoCD в режим NodePort
-  ansible.builtin.command:
+  ansible.builtin.command: >
     kubectl patch svc argocd-server -n argocd -p
     '{\"spec\": {\"type\": \"NodePort\", \"ports\": [{\"port\": 80, \"nodePort\": 30080}]}}'
