@@ -21,8 +21,8 @@ spec:
             defaultClusterId: "yandex-cloud-cluster"
           customPricing:
             enabled: true
-            provider: "custom"
-          pricingSrc: "gcp"
+            provider: ""
+          pricingSrc: "default.json"
           pricingVolume:
             configMap:
               name: opencost-pricing
@@ -34,7 +34,8 @@ spec:
               enabled: false
             external:
               enabled: true
-              url: http://kube-prometheus-stack-prometheus.monitoring.svc.cluster.local:9090
+              url: http://cluster.local
+
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: opencost
