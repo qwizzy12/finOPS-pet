@@ -14,13 +14,14 @@ spec:
         opencost:
           cloudProvider: "custom"
           extraEnv:
-            - name: CLOUD_PROVIDER
-              value: "custom"
-            - name: CUSTOM_PROVIDER_ONLY
-              value: "true"
+            CLOUD_PROVIDER: "custom"
+            CUSTOM_PROVIDER_ONLY: "true"
           exporter:
             cloudProviderApiKey: "disabled"
             defaultClusterId: "yandex-cloud-cluster"
+          customPricing:
+            enabled: true
+            provider: "custom"
           pricingSrc: "default.json"
           pricingVolume:
             configMap:
