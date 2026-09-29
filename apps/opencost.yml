@@ -12,30 +12,34 @@ spec:
     helm:
       values: |
         opencost:
-          cloudProvider: "custom"
           extraEnv:
-            CLOUD_PROVIDER: "custom"
-            CUSTOM_PROVIDER_ONLY: "true"
+            - name: CLOUD_PROVIDER
+              value: "custom"
           exporter:
             cloudProviderApiKey: "disabled"
             defaultClusterId: "yandex-cloud-cluster"
+            cloudCost:
+              enabled: false
+            livenessProbe:
+              initialDelaySeconds: 180
+              periodSeconds: 10
+            readinessProbe:
+              initialDelaySeconds: 180
+              periodSeconds: 10
           customPricing:
             enabled: true
-            provider: ""
-          pricingSrc: "default.json"
-          pricingVolume:
-            configMap:
-              name: opencost-pricing
-          metrics:
-            serviceMonitor:
-              enabled: true
+            provider: "custom"
+            costModel:
+              description: "Yandex Cloud RUB"
+              CPU: "1.25"
+              RAM: "0.20"
+              storage: "0.05"
           prometheus:
             internal:
               enabled: false
             external:
               enabled: true
-              url: http://kube-prometheus-stack-prometheus.monitoring.svc.cluster.local:9090
-
+              url: "http://kube-prometheus-stack-prometheus.monitoring.svc.cluster.local:9090"
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: opencost
