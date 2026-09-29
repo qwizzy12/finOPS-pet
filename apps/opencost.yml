@@ -22,6 +22,10 @@ spec:
             enabled: true
             provider: "custom"
             costModel:
+              GPU: "0.000000"
+              RAM: "0.216000"
+              storage: "0.000000"
+              zone: "ru-central1-a"
               description: "Custom k3s pricing model"
           prometheus:
             internal:
