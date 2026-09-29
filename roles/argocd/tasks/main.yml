@@ -56,10 +56,12 @@
 - name: Применение манифеста root-apps в Kubernetes
   ansible.builtin.command: kubectl apply -f /tmp/root-apps.yaml
   changed_when: true
-- name: Автоматический импорт дашборда OpenCost в Grafana Sidecar
-  kubernetes.core.k8s:
-    state: present
-    definition:
+
+- name: Создание временного файла манифеста дашборда OpenCost
+  ansible.builtin.copy:
+    dest: /tmp/opencost-dashboard.yaml
+    mode: '0644'
+    content: |
       apiVersion: v1
       kind: ConfigMap
       metadata:
@@ -68,17 +70,11 @@
         labels:
           grafana_dashboard: "1"
       data:
-        opencost-dashboard.json: "{{ lookup('file', 'apps/opencost-dashboard.json') }}"
-- name: Автоматический импорт дашборда OpenCost в Grafana Sidecar
-  kubernetes.core.k8s:
-    state: present
-    definition:
-      apiVersion: v1
-      kind: ConfigMap
-      metadata:
-        name: opencost-grafana-dashboard
-        namespace: monitoring
-        labels:
-          grafana_dashboard: "1"
-      data:
-        opencost-dashboard.json: "{{ lookup('file', 'apps/opencost-dashboard.json') }}"
+        opencost-dashboard.json: |
+          {{ lookup('file', 'apps/opencost-dashboard.json') | indent(10) }}
+  changed_when: false
+
+- name: Применение манифеста дашборда OpenCost в Kubernetes
+  ansible.builtin.command: kubectl apply -f /tmp/opencost-dashboard.yaml
+  changed_when: true
+
