@@ -1,5 +1,5 @@
 - name: Скачивание и установка k3s
-  shell: "curl -sfL https://get.k3s.io | sh -"
+  ansible.builtin.command: "curl -sfL https://get.k3s.io | sh -"
   args:
     creates: /usr/local/bin/k3s
 - name: Ожидание инциализации k3s
@@ -7,9 +7,9 @@
     timeout: 20
 
 - name: Проверка нод кластера
-  shell: "kubectl get nodes"
+  ansible.builtin.command: "kubectl get nodes"
   register: kubectl_output
 
 - name: Вывод статуса k3s
-  debug:
+  ansible.builtin.debug:
     var: kubectl_output.stdout_lines
