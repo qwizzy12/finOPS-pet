@@ -18,6 +18,10 @@ spec:
             nodePort: 30090
           enabled: true
           adminPassword: "admin"
+          sidecar:
+            dashboards:
+              enabled: true
+              searchNamespace: ALL
 
   destination:
     server: 'https://kubernetes.default.svc'
