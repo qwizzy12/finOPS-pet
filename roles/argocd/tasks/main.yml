@@ -41,7 +41,7 @@
       spec:
         project: default
         source:
-          repoURL: "https://github.com/qwizzy12"
+          repoURL: "https://github.com/qwizzy12/finOPS-pet"
           targetRevision: HEAD
           path: apps
         destination:
