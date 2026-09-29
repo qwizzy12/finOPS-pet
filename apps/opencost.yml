@@ -18,6 +18,9 @@ spec:
           exporter:
             cloudProviderApiKey: "disabled"
             defaultClusterId: "yandex-cloud-cluster"
+          customPricing:
+            enabled: true
+            provider: "custom"
           pricingSrc: "default.json"
           pricingVolume:
             configMap:
