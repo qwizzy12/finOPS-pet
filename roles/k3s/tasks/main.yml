@@ -1,5 +1,5 @@
 - name: Скачивание и установка k3s
-  ansible.builtin.command: "curl -sfL https://get.k3s.io | sh -"
+  ansible.builtin.command: "curl -sfL https://get.k3s.io | sh -" # noqa: command-shell
   args:
     creates: /usr/local/bin/k3s
   changed_when: true
