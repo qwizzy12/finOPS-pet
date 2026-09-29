@@ -85,4 +85,6 @@
     kubectl create configmap opencost-pricing
     --from-file=default.json=default.json
     -n opencost --dry-run=client -o yaml | kubectl apply -f -
+  args:
+    executable: /bin/bash
   changed_when: true
