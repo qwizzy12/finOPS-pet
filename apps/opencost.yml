@@ -12,6 +12,7 @@ spec:
     helm:
       values: |
         opencost:
+          cloudProvider: "custom"
           extraEnv:
             - name: CLOUD_PROVIDER
               value: "custom"
