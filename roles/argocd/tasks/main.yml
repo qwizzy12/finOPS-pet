@@ -33,26 +33,19 @@
     dest: /tmp/root-apps.yaml
     mode: '0644'
     content: |
-      apiVersion: argoproj.io/v1alpha1
-      kind: Application
+      apiVersion: v1
+      kind: ConfigMap
       metadata:
-        name: apps
-        namespace: argocd
-      spec:
-        project: default
-        source:
-          repoURL: "https://github.com/qwizzy12/finOPS-pet"
-          targetRevision: HEAD
-          path: apps
-        destination:
-          server: "https://kubernetes.default.svc"
-          namespace: argocd
-        syncPolicy:
-          automated:
-            prune: true
-            selfHeal: true
+        name: opencost-grafana-dashboard
+        namespace: monitoring
+        labels:
+          grafana_dashboard: "1"
+        annotations:
+          grafana.org/folder: "OpenCost"
+      data:
+        opencost-dashboard.json: |-
+          {{ lookup('file', 'apps/opencost-dashboard.json') | indent(10) }}
   changed_when: false
-
 - name: Применение манифеста root-apps в Kubernetes
   ansible.builtin.command: kubectl apply -f /tmp/root-apps.yaml
   changed_when: true
