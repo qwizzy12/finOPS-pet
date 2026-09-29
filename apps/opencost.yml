@@ -22,6 +22,9 @@ spec:
           pricingVolume:
             configMap:
               name: opencost-pricng
+          metrics:
+            serviceMonitor:
+              enabled: true
           prometheus:
             internal:
               enabled: false
