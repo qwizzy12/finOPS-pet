@@ -21,7 +21,7 @@ spec:
           pricingSrc: "default.json"
           pricingVolume:
             configMap:
-              name: opencost-pricng
+              name: opencost-pricing
           metrics:
             serviceMonitor:
               enabled: true
@@ -30,7 +30,7 @@ spec:
               enabled: false
             external:
               enabled: true
-              url: "http://kube-prometheus-stack-prometheus.monitoring.svc.cluster.local:9090"
+              url: http://kube-prometheus-stack-prometheus.monitoring.svc.cluster.local:9090
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: opencost
