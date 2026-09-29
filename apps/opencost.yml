@@ -18,15 +18,10 @@ spec:
           exporter:
             cloudProviderApiKey: "disabled"
             defaultClusterId: "yandex-cloud-cluster"
-          customPricing:
-            enabled: true
-            provider: "custom"
-            costModel:
-              GPU: "0.000000"
-              RAM: "0.216000"
-              storage: "0.000000"
-              zone: "ru-central1-a"
-              description: "Custom k3s pricing model"
+          pricingSrc: "default.json"
+          pricingVolume:
+            configMap:
+              name: opencost-pricng
           prometheus:
             internal:
               enabled: false
