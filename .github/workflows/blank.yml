@@ -29,6 +29,6 @@ jobs:
           pip install ansible-lint
 
       - name: Run Ansible-lint
-        run: ansible-lint deploy.yml
+        run: ansible-lint playbook.yml
         env:
           ANSIBLE_COLLECTIONS_PATH: ~/.ansible/collections
