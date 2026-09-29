@@ -34,7 +34,7 @@ spec:
               enabled: false
             external:
               enabled: true
-              url: http://cluster.local
+              url: http://kube-prometheus-stack-prometheus.monitoring.svc.cluster.local:9090
 
   destination:
     server: 'https://kubernetes.default.svc'
