@@ -44,7 +44,7 @@
           grafana.org/folder: "OpenCost"
       data:
         opencost-dashboard.json: |-
-          {{ lookup('file', 'apps/opencost-dashboard.json') | indent(10) }}
+          {{ lookup('file', 'opencost-dashboard.json') | indent(10) }}
   changed_when: false
 - name: Применение манифеста root-apps в Kubernetes
   ansible.builtin.command: kubectl apply -f /tmp/root-apps.yaml
