@@ -1,12 +1,16 @@
-extraScrapeConfigs: |
-  - job_name: opencost
-    honor_labels: true
-    scrape_interval: 1m
-    scrape_timeout: 10s
-    metrics_path: /metrics
-    scheme: http
-    dns_sd_configs:
-    - names:
-      - opencost.opencost
-      type: 'A'
-      port: 9003
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: opencost-monitor
+  namespace: monitoring
+  labels:
+    release: kube-prometheus-stack
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: opencost
+  endpoints:
+  - port: http-metrics
+    interval: 30s
+    path: /metrics
+
