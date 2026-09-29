@@ -1,13 +1,4 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: opencost-grafana-dashboard
-  namespace: monitoring
-  labels:
-    grafana_dashboard: "1"
-data:
-  opencost-dashboard.json: |-
-    {
+{
   "annotations": {
     "list": [
       {
@@ -1669,4 +1660,3 @@ data:
   "version": 11,
   "weekStart": ""
 }
-

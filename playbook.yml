@@ -1,5 +1,5 @@
 - name: Развертывание GitOps
-  hosts: all_server
+  hosts: all_servers
   become: true
 
   roles:
