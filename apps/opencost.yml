@@ -22,7 +22,7 @@ spec:
           customPricing:
             enabled: true
             provider: "custom"
-          pricingSrc: "default.json"
+          pricingSrc: "gcp"
           pricingVolume:
             configMap:
               name: opencost-pricing
