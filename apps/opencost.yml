@@ -16,12 +16,11 @@ spec:
           extraEnv:
             - name: CLOUD_PROVIDER
               value: "custom"
+            - name: CUSTOM_PROVIDER_ONLY
+              value: "true"
           exporter:
             cloudProviderApiKey: "disabled"
             defaultClusterId: "yandex-cloud-cluster"
-          customPricing:
-            enabled: true
-            provider: "custom"
           pricingSrc: "default.json"
           pricingVolume:
             configMap:
