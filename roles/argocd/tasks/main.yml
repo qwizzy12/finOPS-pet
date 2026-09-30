@@ -51,15 +51,27 @@
           automated:
             prune: true
             selfHeal: true
+          syncOptions:
+            - CreateNamespace=true
+            - ServerSideApply=true
+            - SkipDryRunOnMissingResource=true
   changed_when: false
 
 - name: Применение манифеста приложения apps в Kubernetes
   ansible.builtin.command: kubectl apply -f /tmp/apps.yaml
   changed_when: true
 
-- name: Создание временного файла манифеста дашборда OpenCost
+- name: Создание namespace monitoring для Grafana
+  ansible.builtin.shell: "kubectl create namespace monitoring --dry-run=client -o yaml | kubectl apply -f -"
+  changed_when: true
+
+- name: Удаление старого кэша дашборда OpenCost перед импортом
+  ansible.builtin.shell: "kubectl delete configmap opencost-grafana-dashboard -n monitoring --ignore-not-found=true"
+  changed_when: true
+
+- name: Нативный автодеплой дашборда OpenCost в Grafana через манифесты K3s
   ansible.builtin.copy:
-    dest: /tmp/opencost-dashboard.yaml
+    dest: /var/lib/rancher/k3s/server/manifests/opencost-grafana-dashboard.yaml
     mode: '0644'
     content: |
       apiVersion: v1
@@ -72,19 +84,5 @@
         annotations:
           grafana.org/folder: "OpenCost"
       data:
-        opencost-dashboard.json: |-
+        opencost-dashboard.json: |
           {{ lookup('file', 'opencost-dashboard.json') | indent(10) }}
-  changed_when: false
-
-- name: Применение манифеста дашборда OpenCost в Kubernetes
-  ansible.builtin.command: kubectl apply -f /tmp/opencost-dashboard.yaml
-  changed_when: true
-
-- name: Создание ConfigMap с кастомными ценами default.json
-  ansible.builtin.shell: >
-    kubectl create configmap opencost-pricing
-    --from-file=default.json=default.json
-    -n opencost --dry-run=client -o yaml | kubectl apply -f -
-  args:
-    executable: /bin/bash
-  changed_when: true
